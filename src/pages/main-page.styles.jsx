@@ -3,9 +3,8 @@ import styled from 'styled-components'
 export const MainContainer = styled.div`
     width: 70vw;
     padding: 10px;
-    margin:auto;
-    height: 100px;
-    background-color: red;
+    margin:5vh auto;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
 
 export const DropDownContainer = styled.div`

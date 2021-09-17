@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import Loader from '../loader/loader.component';
 import { SentenceContainer, Sentence, SaveButton } from './sentence.styles';
 
-const SentenceGenerator = ({type, word}) => {
+const SentenceGenerator = ({type, word, handleChange}) => {
 
     const [sentence, setSentence] = useState("");
 
@@ -20,6 +19,7 @@ const SentenceGenerator = ({type, word}) => {
                         else{
                             setSentence(speech.definitions[0].example);
                         }
+                        return 0;
                     })
                 }
             }
@@ -31,11 +31,34 @@ const SentenceGenerator = ({type, word}) => {
         getSentence();
     }, [word])
 
+    const saveSentence = async () => {
+
+        try{
+            const data = {
+                sentence: sentence
+            }
+    
+            await fetch("http://localhost:5000/sentences", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+    
+            handleChange(); //Will handle change and re render page to show changes.
+            alert("Saved Succesfully");
+            
+        }
+        catch(err){
+            console.log(err.message);
+            alert("Something went wrong");
+        }
+    }
+
     return (
         <div>
             {sentence ? (<SentenceContainer>
                 <Sentence>{sentence}</Sentence>
-                <SaveButton>Save</SaveButton>
+                <SaveButton onClick={saveSentence}>Save</SaveButton>
             </SentenceContainer>) : null}
         </div>
     )
