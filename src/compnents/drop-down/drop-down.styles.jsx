@@ -7,4 +7,8 @@ export const Select = styled.select`
     border: 0;
     outline: 0;
     margin: auto;
+
+    @media (max-width: 768px) {
+        width: 25vw;
+    }
 `;
