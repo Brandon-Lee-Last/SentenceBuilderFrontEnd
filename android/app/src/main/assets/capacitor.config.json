@@ -1,0 +1,6 @@
+{
+	"appId": "com.sentenceapp.app",
+	"appName": "sentenceGenerator",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
